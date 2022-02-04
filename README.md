@@ -1,7 +1,7 @@
 # BlazorUnlayer
-Created on Visual Studio 2022 .Net 6 - Blazor Server
-JS script is in wwwroot>script>blazorInterop.js
-Some configurations are limited due to Plan restriction
+1. Created on Visual Studio 2022 .Net 6 - Blazor Server
+2. JS script is in wwwroot>script>blazorInterop.js
+3. Some configurations are limited due to Plan restriction
 
 Features
 - Load JSON

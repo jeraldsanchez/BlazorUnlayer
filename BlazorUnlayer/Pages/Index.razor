@@ -1,0 +1,38 @@
+﻿@page "/"
+@inject IJSRuntime JS;
+
+<div id="editor-container" style="height: 700px"></div>
+<br />
+<button class="btn btn-primary" @onclick="GetHTML">Get HTML from Unlayer</button>
+<button class="btn btn-success" @onclick="GetJSON">Get JSON from Unlayer</button>
+<button class="btn btn-danger" @onclick="LoadHTML">Load HTML from JS</button>
+
+@code{
+    private object result;
+
+    private async Task LoadHTML()
+    {
+        await JS.InvokeVoidAsync("blazorInterop.loadHTML");
+    }
+
+    private async Task GetHTML()
+    {
+        result = await JS.InvokeAsync<object>("blazorInterop.getHTML");
+    }
+
+       private async Task GetJSON()
+    {
+        result = await JS.InvokeAsync<object>("blazorInterop.getJSON");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender) 
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("blazorInterop.initHTMLUnlayer");
+            await JS.InvokeVoidAsync("blazorInterop.setMergeTags");
+            await JS.InvokeVoidAsync("blazorInterop.showAlert");
+        }
+    }
+    
+}
